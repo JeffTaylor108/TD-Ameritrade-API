@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Stock Trading</title>
+</head>
+<body>
+
+    <h1>Enter a stock symbol to find its daily price history and news from the past week</h1>
+    <form action='/form-action' method='POST'>
+        <input type="text" name="stock" id="stock" value="{{ stock }}">
+        <input type="submit" name="action" value="Check Price">
+        <input type="submit" name="action" value="Check Stock News">
+    </form>
+    <br>
+
+    {% if prices %}
+        <div class="price-card">
+            <h2>Daily Stock Price Stats</h2>
+            <p><strong>Current price:</strong> {{ prices['c'] }}</p>
+            <p><strong>Change in price:</strong> {{ prices['d'] }}</p>
+            <p><strong>Percent change in price:</strong> {{ prices['dp'] }}%</p>
+            <p><strong>High price of day:</strong> {{ prices['h'] }}</p>
+            <p><strong>Low price of day:</strong> {{ prices['l'] }}</p>
+            <p><strong>Open price of day:</strong> {{ prices['o'] }}</p>
+            <p><strong>Previous close price:</strong> {{ prices['pc'] }}</p>
+        </div>
+    {% endif %}
+
+    {% if stock_news %}
+        <h2>Stock News</h2>
+        {% for news in stock_news %}
+            <div class="news-card">
+                <h3 class="headline">Headline: {{ news['headline'] }}</h3>
+                <p class="summary"><strong>Summary:</strong> {{ news['summary'] }}</p>
+                <p class="link"><strong>Article Link:</strong> <a href="{{ news['url'] }}">Read More</a></p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>

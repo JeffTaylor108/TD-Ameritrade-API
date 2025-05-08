@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 40px;
+}
+
+.price-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    margin-right: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.news-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    margin-right: 20%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.headline {
+    font-size: 1.2em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.summary {
+    font-size: 0.95em;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.link a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
