@@ -15,6 +15,13 @@
     </form>
     <br>
 
+    <form action='/stock-comparison' method='GET'>
+        <input type="text" name="stock1" id="stock1" value="{{ stock1 }}">
+        <input type="text" name="stock2" id="stock2" value="{{ stock2 }}">
+        <input type="submit" name="compare" value="Compare Two Stocks">
+    </form>
+    <br>
+
     {% if prices %}
         <div class="price-card">
             <h2>Daily Stock Price Stats</h2>
@@ -30,6 +37,7 @@
 
     {% if stock_news %}
         <h2>Stock News</h2>
+        <h4>For today, {{ date }}</h4>
         {% for news in stock_news %}
             <div class="news-card">
                 <h3 class="headline">Headline: {{ news['headline'] }}</h3>
@@ -37,6 +45,24 @@
                 <p class="link"><strong>Article Link:</strong> <a href="{{ news['url'] }}">Read More</a></p>
             </div>
         {% endfor %}
+    {% endif %}
+
+    {% if comparison %}
+        <h2>Stock Comparison</h2>
+        <h4>{{ comparison['stock1']['symbol'] }} VS {{ comparison['stock2']['symbol'] }}</h4>
+        <div class="stock-comparison-container">
+            {% for stock in comparison.values() %}
+                <div class="stock-card">
+                    <h4>{{ stock['symbol'] }}</h4>
+                    <p><strong>Current price</strong>: {{ stock['current_price'] }}</p>
+                    <p><strong>Change in price today</strong>: {{ stock['change_in_price'] }}</p>
+                    <p><strong>Price volatility (difference in today's high price vs low price)</strong>: {{ stock['daily_volatility'] }}</p>
+                    <p><strong>How many experts are recommending to buy</strong>: {{ stock['recommended_to_buy'] }}</p>
+                    <p><strong>How many experts are recommending to hold</strong>: {{ stock['recommended_to_hold'] }}</p>
+                    <p><strong>How many experts are recommending to sell</strong>: {{ stock['recommended_to_sell'] }}</p>
+                </div>
+            {% endfor %}
+        </div>
     {% endif %}
 
 </body>
